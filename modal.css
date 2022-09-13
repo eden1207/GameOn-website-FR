@@ -8,7 +8,8 @@
   margin: 0;
   padding: 0;
 }
-/* Landing Page */
+
+/*---- Landing Page ----*/
 
 body {
   margin: 0;
@@ -29,6 +30,8 @@ p {
 img {
   padding-right: 1rem;
 }
+
+/*-- Mise en forme du Header --*/
 
 .topnav {
   overflow: hidden;
@@ -56,6 +59,7 @@ img {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
+  text-decoration: underline; /* Ajout pour que le texte des balises nav soit souligné au survol */
 }
 
 .topnav a.active {
@@ -92,7 +96,7 @@ img {
 
 
 
- @media screen and (max-width: 540px) {
+@media screen and (max-width: 540px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -100,6 +104,8 @@ img {
     margin-top: -15px;
   }
 } 
+
+/*-- Mise en page du corps de la page d'accueil --*/
 
 main {
   font-size: 130%;
@@ -114,6 +120,8 @@ main {
 
 
 }
+
+/* Gestion du bouton de lancement de formulaire */
 
 .modal-btn {
   font-size: 145%;
@@ -131,13 +139,19 @@ main {
   background: #3876ac;
 }
 
+/*-- Mise en page du footer --*/
+
 .footer {
   margin: 20px;
   padding: 10px;
   font-family: var(--font-slab);
 }
 
+
 /* Modal form */
+
+
+/*-- Mise en forme du bouton de confirmation dans le formulaire d'enregistrement --*/
 
 .button {
   background: #fe142f;
@@ -167,6 +181,89 @@ main {
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
+}
+
+.confirm-bground {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+
+.close-style1 {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 32px;
+  height: 32px;
+  opacity: 1;
+  cursor: pointer;
+  transform: scale(0.7);
+}
+.close-style1:before,
+.close-style1:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 3px;
+  background-color: #fff;
+}
+.close-style1:before {
+  transform: rotate(45deg);
+}
+.close-style1:after {
+  transform: rotate(-45deg);
+}
+
+.close-style2 {
+  background: #fe142f;
+  display: flex;
+  color: #fff;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  border: 0;
+
+  display: block; /* On garde */
+}
+
+.close-style2:hover{
+  background: #3876ac;
+}
+
+.confirm-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  height: 800px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
+}
+
+.message {
+  margin-bottom: 388px;
+  font-size: 36px;
+  text-align: center;
 }
 
 .content {
@@ -436,6 +533,7 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
+  width: 75%; /* Ajout pour que le texte s'adapte à la largeur de la page */
   font-size: 6rem;
   font-weight: normal;
   white-space: nowrap;
