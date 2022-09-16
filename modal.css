@@ -305,6 +305,23 @@ input {
   font-size: 20px;
   height: 48px;
 }
+
+/*Ajout*/
+#error1, #error2, #error3, #error4, #error5, #error6, #error7{
+  font-size: 0.4em;
+  color: #e54858;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  text-align: right;
+  line-height: 0.3;
+}
+
+/*Ajout*/
+/*.border-error1, .border-error2, .border-error3, .border-error4, .border-error5{
+  display: none;
+  border: 2px solid #e54858;
+}*/
+
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
