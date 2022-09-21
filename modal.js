@@ -72,9 +72,11 @@ const ckeckingMail = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,3}$/;
 
 // Ma version de launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-submitBtn.addEventListener("click", launchConfirm);
+//submitBtn.addEventListener("submit", launchConfirm); //modif au lieu de click
 closeBtn.forEach((btn) => btn.addEventListener("click", closeWindow));
 closeConfirmBtn.forEach((btn) => btn.addEventListener("click", closeWindow));
+
+const myForm = document.getElementById('JS-myForm');
 
 
 // Ma version de launch modal form
@@ -115,18 +117,24 @@ let tabMessages = [
 
   {
     "ErrorNumber" : document.getElementById("JS-error6"),
-    "Error" : "Vous devez choisir une option.",
+    "Error" : "Vous devez saisir une valeur numérique positive ou nulle.",
     "Confirm" : ""
   },
 
   {
     "ErrorNumber" : document.getElementById("JS-error7"),
+    "Error" : "Vous devez choisir une option.",
+    "Confirm" : ""
+  },
+
+  {
+    "ErrorNumber" : document.getElementById("JS-error8"),
     "Error" : "Vous devez vérifier que vous acceptez les termes et conditions.",
     "Confirm" : ""
   }
 ];
 
-class informations {
+class Informations {
   constructor(ErrorName, ErrorMessage, ConfirmMessage){
     this.ErrorName = ErrorName;
     this.ErrorMessage = ErrorMessage;
@@ -134,7 +142,40 @@ class informations {
   }
 };
 
-function launchConfirm() {
+myForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  launchConfirm();
+  function launchConfirm() {
+    let conditions = [
+      firstname.value.length < 2,
+      surname.value.length < 2,
+      ckeckingMail.test(email.value) == false,
+      birthdate.value.length === 0,
+      NumberofTournament.value.length === 0,
+      NumberofTournament.value < 0,
+      location1.checked == false && location2.checked == false && location3.checked == false && location4.checked == false && location5.checked == false && location6.checked == false,
+      checkbox1.checked == false
+    ];
+    if(conditions[0] || conditions[1] || conditions[2] || conditions[3] || conditions[4] || conditions[5] || conditions[6] || conditions[7]){  
+      errorMessage();
+    }else{
+      modalbg.style.display = "none";
+      modalConfirmbg.style.display = "block";
+    }
+  
+    function errorMessage(){
+      for(let i=0; i<8; i++){
+        if(conditions[i]){
+          new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorMessage;
+        }else{
+          new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ConfirmMessage;
+        }
+      }
+    }
+  }
+});
+
+/*function launchConfirm() {
   let conditions = [
     firstname.value.length < 2,
     surname.value.length < 2,
@@ -154,13 +195,13 @@ function launchConfirm() {
   function errorMessage(){
     for(let i=0; i<7; i++){
       if(conditions[i]){
-        new informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorMessage;
+        new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorMessage;
       }else{
-        new informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ConfirmMessage;
+        new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ConfirmMessage;
       }
     }
   }
-}
+}*/
 
 function closeWindow() {
   modalbg.style.display = "none";  
