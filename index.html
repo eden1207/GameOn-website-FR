@@ -81,31 +81,33 @@
 
         <span class="close JS-close"></span>
         <div class="modal-body">
-          <form name="reserve" action="index.html" method="get"> <!--onsubmit="return validate();"-->
+          <!--<form name="reserve" action="index.html" method="get">--> <!--onsubmit="return validate();"-->
+          <form id="JS-myForm">  
             <div class="formData">
               <label for="JS-first">Prénom</label><br>
               <input class="text-control border-error1" type="text" id="JS-first" name="first" /><br>
-              <span id="JS-error1" class="error1"></span>
+              <span id="JS-error1" class="error"></span>
             </div>
             <div class="formData">
               <label for="JS-last">Nom</label><br>
               <input class="text-control border-error2" type="text" id="JS-last" name="last" /><br>
-              <span id="JS-error2" class="error2"></span>
+              <span id="JS-error2" class="error"></span>
             </div>
             <div class="formData">
               <label for="JS-email">E-mail</label><br>
               <input class="text-control border-error3" type="email" id="JS-email" name="email" /><br>
-              <span id="JS-error3" class="error3"></span>
+              <span id="JS-error3" class="error"></span>
             </div>
             <div class="formData">
               <label for="JS-birthdate">Date de naissance</label><br>
               <input class="text-control border-error4" type="date" id="JS-birthdate" name="birthdate" /><br>
-              <span id="JS-error4" class="error4"></span>
+              <span id="JS-error4" class="error"></span>
             </div>
             <div class="formData">
               <label for="JS-quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-              <input type="number" class="text-control border-error5" id="JS-quantity" name="quantity" min="0" max="99">
-              <span id="JS-error5" class="error5"></span>
+              <input type="number" class="text-control border-error5" id="JS-quantity" name="quantity" max="99"> 
+              <span id="JS-error5" class="error"></span>
+              <span id="JS-error6" class="error"></span>
             </div>
             <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
             <div class="formData">
@@ -139,7 +141,7 @@
                 <span class="checkbox-icon"></span>
                 Portland
               </label><br>
-              <span id="JS-error6" class="error6"></span>
+              <span id="JS-error7" class="error"></span>
             </div>
 
             <div class="formData">
@@ -148,7 +150,7 @@
                 <span class="checkbox-icon"></span>
                 J'ai lu et accepté les conditions d'utilisation.
               </label><br>
-              <span id="JS-error7" class="error1"></span>
+              <span id="JS-error8" class="error"></span>
               <input class="checkbox-input" type="checkbox" id="checkbox2" />
               <label class="checkbox2-label" for="checkbox2">
                 <span class="checkbox-icon"></span>
@@ -158,7 +160,7 @@
             </div>
             <!--<input id="JS-btn-submit" type="submit" class="btn-submit button" value="C'est parti" />
             <label for="JS-btn-submit"></label>-->
-            <button id="JS-btn-submit" class="btn-submit button" type="button">C'est parti</button>
+            <button id="JS-btn-submit" class="btn-submit button" type="submit">C'est parti</button>
           </form>
         </div>
       </div>
