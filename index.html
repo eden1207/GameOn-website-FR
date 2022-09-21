@@ -12,13 +12,14 @@
 
 <body>
 
-  <!---- Fenêtre d'acceuil des participants ---->
+  <!-- Fenêtre d'acceuil des participants -->
 
   <!-- Header de la page -->
 
   <div class="topnav" id="myTopnav">
     <div class="header-logo">
-      <img alt="logo" src="Logo.png" width="auto" height="auto" />
+      <img class="image_logo" alt="logo" src="Logo.png"  /> 
+      <img class="image_logo_resize" alt="logo_resize" src="Logo_resize.png"  /> 
     </div>
     <div class="main-navbar">
 
@@ -48,93 +49,106 @@
           Vous aimez jouer ? Notre prochain évènement gaming est ouvert
           aux réservations... Places limitées !
         </p>
-        <button class="btn-signup modal-btn">
+        <button class="btn-signup modal-btn JS-modal-btn">
           je m'inscris
         </button>
       </div>
       <div class="hero-img">
         <img src="./bg_img.jpg" alt="img" />
       </div>
-      <button class="btn-signup modal-btn">
+      <button class="btn-signup modal-btn JS-modal-btn">
         je m'inscris
       </button>
     </div>
 
     <!-- Fenêtre d'enregistrement des données pour l'inscription -->
 
-    <div class="bground">
+    <div class="bground JS-bground">
       <div class="content">
-        <span class="close"></span>
+
+
+        <!--<div class="topnav" id="myTopnav">
+          <div class="header-logo">
+            <img class="image_logo_resize" alt="logo_resize" src="Logo_resize.png"  /> 
+          </div>
+          <div class="main-navbar">
+            <a href="javascript:void(0);" class="icon" onclick="editNav()">
+              <i class="fa fa-bars"></i>
+            </a>
+          </div>
+        </div>-->
+
+
+        <span class="close JS-close"></span>
         <div class="modal-body">
           <form name="reserve" action="index.html" method="get"> <!--onsubmit="return validate();"-->
             <div class="formData">
-              <label for="first">Prénom</label><br>
-              <input class="text-control border-error1" type="text" id="first" name="first" /><br>
-              <span id="error1"></span>
+              <label for="JS-first">Prénom</label><br>
+              <input class="text-control border-error1" type="text" id="JS-first" name="first" /><br>
+              <span id="JS-error1" class="error1"></span>
             </div>
             <div class="formData">
-              <label for="last">Nom</label><br>
-              <input class="text-control border-error2" type="text" id="last" name="last" /><br>
-              <span id="error2"></span>
+              <label for="JS-last">Nom</label><br>
+              <input class="text-control border-error2" type="text" id="JS-last" name="last" /><br>
+              <span id="JS-error2" class="error2"></span>
             </div>
             <div class="formData">
-              <label for="email">E-mail</label><br>
-              <input class="text-control border-error3" type="email" id="email" name="email" /><br>
-              <span id="error3"></span>
+              <label for="JS-email">E-mail</label><br>
+              <input class="text-control border-error3" type="email" id="JS-email" name="email" /><br>
+              <span id="JS-error3" class="error3"></span>
             </div>
             <div class="formData">
-              <label for="birthdate">Date de naissance</label><br>
-              <input class="text-control border-error4" type="date" id="birthdate" name="birthdate" /><br>
-              <span id="error4"></span>
+              <label for="JS-birthdate">Date de naissance</label><br>
+              <input class="text-control border-error4" type="date" id="JS-birthdate" name="birthdate" /><br>
+              <span id="JS-error4" class="error4"></span>
             </div>
             <div class="formData">
-              <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-              <input type="number" class="text-control border-error5" id="quantity" name="quantity" min="0" max="99">
-              <span id="error5"></span>
+              <label for="JS-quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
+              <input type="number" class="text-control border-error5" id="JS-quantity" name="quantity" min="0" max="99">
+              <span id="JS-error5" class="error5"></span>
             </div>
             <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
             <div class="formData">
-              <input class="checkbox-input" type="radio" id="location1" name="location" value="New York" />
-              <label class="checkbox-label" for="location1">
+              <input class="checkbox-input" type="radio" id="JS-location1" name="location" value="New York" />
+              <label class="checkbox-label" for="JS-location1">
                 <span class="checkbox-icon"></span>
                 New York
               </label>
-              <input class="checkbox-input" type="radio" id="location2" name="location" value="San Francisco" />
-              <label class="checkbox-label" for="location2">
+              <input class="checkbox-input" type="radio" id="JS-location2" name="location" value="San Francisco" />
+              <label class="checkbox-label" for="JS-location2">
                 <span class="checkbox-icon"></span>
                 San Francisco
               </label>
-              <input class="checkbox-input" type="radio" id="location3" name="location" value="Seattle" />
-              <label class="checkbox-label" for="location3">
+              <input class="checkbox-input" type="radio" id="JS-location3" name="location" value="Seattle" />
+              <label class="checkbox-label" for="JS-location3">
                 <span class="checkbox-icon"></span>
                 Seattle
               </label>
-              <input class="checkbox-input" type="radio" id="location4" name="location" value="Chicago" />
-              <label class="checkbox-label" for="location4">
+              <input class="checkbox-input" type="radio" id="JS-location4" name="location" value="Chicago" />
+              <label class="checkbox-label" for="JS-location4">
                 <span class="checkbox-icon"></span>
                 Chicago
               </label>
-              <input class="checkbox-input" type="radio" id="location5" name="location" value="Boston" />
-              <label class="checkbox-label" for="location5">
+              <input class="checkbox-input" type="radio" id="JS-location5" name="location" value="Boston" />
+              <label class="checkbox-label" for="JS-location5">
                 <span class="checkbox-icon"></span>
                 Boston
               </label>
-              <input class="checkbox-input" type="radio" id="location6" name="location" value="Portland" />
-              <label class="checkbox-label" for="location6">
+              <input class="checkbox-input" type="radio" id="JS-location6" name="location" value="Portland" />
+              <label class="checkbox-label" for="JS-location6">
                 <span class="checkbox-icon"></span>
                 Portland
-              </label>
-              <span id="error6"></span>
+              </label><br>
+              <span id="JS-error6" class="error6"></span>
             </div>
 
             <div class="formData">
-              <input class="checkbox-input" type="checkbox" id="checkbox1"/> <!--checked--> 
-              <label class="checkbox2-label" for="checkbox1"> <!--required-->
+              <input class="checkbox-input" type="checkbox" id="JS-checkbox1"/> <!--checked--> 
+              <label class="checkbox2-label" for="JS-checkbox1"> <!--required-->
                 <span class="checkbox-icon"></span>
                 J'ai lu et accepté les conditions d'utilisation.
-              </label>
-              <br>
-              <span id="error7"></span>
+              </label><br>
+              <span id="JS-error7" class="error1"></span>
               <input class="checkbox-input" type="checkbox" id="checkbox2" />
               <label class="checkbox2-label" for="checkbox2">
                 <span class="checkbox-icon"></span>
@@ -142,8 +156,9 @@
               </label>
               <br>
             </div>
-            <!--<input class="btn-submit" type="submit" class="button" value="C'est parti" />-->
-            <button id="btn-submit" class="btn-submit" type="button" class="button">C'est parti</button>
+            <!--<input id="JS-btn-submit" type="submit" class="btn-submit button" value="C'est parti" />
+            <label for="JS-btn-submit"></label>-->
+            <button id="JS-btn-submit" class="btn-submit button" type="button">C'est parti</button>
           </form>
         </div>
       </div>
@@ -151,11 +166,11 @@
 
     <!-- Fenêtre de confirmation d'inscription -->
 
-    <div class="confirm-bground">
+    <div class="confirm-bground JS-confirm-bground">
       <div class="confirm-content">
-        <span class="close-style1 close-confirm-button"></span>
+        <span class="close-style1 JS-close-confirm-button"></span>
         <div class="message">Merci pour<br> votre inscription</div>
-        <button class="close-style2 close-confirm-button">Fermer</button>
+        <button class="close-style2 JS-close-confirm-button">Fermer</button>
       </div>
     </div>
 
