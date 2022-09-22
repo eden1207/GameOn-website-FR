@@ -24,11 +24,11 @@ function editNav() {
 
 // -------------------------------------------------------------------- //
 
-// Ma version de DOM Elements
+/*------ Ma version du code JavaScript ------*/
 
-// Class associées au conteneur de la fenêtre "formulaire" et de la fenêtre de confirmation d'inscription
-const modalbg = document.querySelector(".JS-bground");
-const modalConfirmbg = document.querySelector(".JS-confirm-bground");
+/*---- Fonctionnalités des boutons ----*/
+
+// On déclare des variables pour chaque class ou id associé à chaque bouton
 
 // Les boutons
 
@@ -40,11 +40,33 @@ const submitBtn = document.getElementById("JS-btn-submit");
 const closeBtn = document.querySelectorAll(".JS-close");
 const closeConfirmBtn = document.querySelectorAll(".JS-close-confirm-button");
 
-const formData = document.querySelectorAll(".formData");
-//const confirmbg = document.querySelector(".confirm-window");
-//const btnsubmit = document.querySelectorAll(".btn-submit");
+/*---- Fonctionnalités associées à l'apparition/disparition du modal et de la confirmation d'envoie des données ----*/
 
-// Les variables correspondand aux entrées dans le formulaire
+const modalbg = document.querySelector(".JS-bground"); // constante qui gère l'apparition du formulaire
+const modalConfirmbg = document.querySelector(".JS-confirm-bground"); // constante qui gère l'apparition des remerciements
+
+// Lancement/fermeture du modal au clique sur le bouton associé à la fonctionnalité
+// Le clique exécute la fonction launchModal/closeWindow associée
+
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+closeBtn.forEach((btn) => btn.addEventListener("click", closeWindow));
+
+function launchModal() {
+  modalbg.style.display = "block";
+}
+
+function closeWindow() {
+  modalbg.style.display = "none";  
+  modalConfirmbg.style.display = "none";
+}
+
+// Fermeture du modal au clique sur le bouton associé à la fonctionnalité (le lancement se fait dans la partie vérification du formulaire)
+
+closeConfirmBtn.forEach((btn) => btn.addEventListener("click", closeWindow));
+
+/*---- Fonctionnalités du modal (formulaire) ----*/
+
+/*-- Les variables correspondand aux entrées dans le formulaire --*/
 
 const firstname = document.getElementById('JS-first');
 const surname = document.getElementById('JS-last');
@@ -61,7 +83,8 @@ const location6 = document.getElementById('JS-location6');
 
 const checkbox1 = document.getElementById('JS-checkbox1');
 
-// RegExp pour vérification de l'adresse mail
+/*-- Utilisation de RegEx pour vérification de l'adresse mail --*/
+
 // Le ^ marque le début et $ la fin de l'expression. 
 // Le [a-zA-Z0-9.-_] indique qu'il faut mettre un élément de type lettre d'alphabet, chiffre, ., - ou _ et le "+" indique qu'on peut en mettre plusieurs
 // Le [@]{1} indique qu'il doit y avoir un @
@@ -70,19 +93,11 @@ const checkbox1 = document.getElementById('JS-checkbox1');
 // Enfin le [a-z]{2,3} pour que l'ensemble se termine par 2 à 3 lettres (ex: fr, net, com)
 const ckeckingMail = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,3}$/;
 
-// Ma version de launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-//submitBtn.addEventListener("submit", launchConfirm); //modif au lieu de click
-closeBtn.forEach((btn) => btn.addEventListener("click", closeWindow));
-closeConfirmBtn.forEach((btn) => btn.addEventListener("click", closeWindow));
+/*-- Constante qui gère la validation du formulaire --*/
 
 const myForm = document.getElementById('JS-myForm');
 
-
-// Ma version de launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-}
+/*-- Regroupement des différents messages d'erreur associés à chaque ligne du formulaire --*/
 
 let tabMessages = [
   {
@@ -134,6 +149,8 @@ let tabMessages = [
   }
 ];
 
+/*-- Class pour généraliser les objets contenants les messages d'erreur, pour fluidifier les fonctions associées à la validation du formulaire (boucle) --*/
+
 class Informations {
   constructor(ErrorName, ErrorMessage, ConfirmMessage){
     this.ErrorName = ErrorName;
@@ -141,6 +158,15 @@ class Informations {
     this.ConfirmMessage = ConfirmMessage;
   }
 };
+
+/*-- Exécution de l'analyse du formulaire --*/
+
+// Déclenchement au clique du bouton submit
+// Le preventDefault évite l'envoie des données (pas de base de données existante)
+// Puis exécution de launchConfirm qui analyse chaque ligne du formulaire
+// S'il n'y a pas d'erreur, le formulaire se ferme et la fenêtre de remerciement apparait
+// Sinon, la fonction execute la fonction errorMessage
+// Celle-ci reprend toutes les conditions et renvoye les messages associés, contenus dans chaque instances de class Informations
 
 myForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -175,38 +201,7 @@ myForm.addEventListener("submit", (e) => {
   }
 });
 
-/*function launchConfirm() {
-  let conditions = [
-    firstname.value.length < 2,
-    surname.value.length < 2,
-    ckeckingMail.test(email.value) == false,
-    birthdate.value.length === 0,
-    NumberofTournament.value.length === 0,
-    location1.checked == false && location2.checked == false && location3.checked == false && location4.checked == false && location5.checked == false && location6.checked == false,
-    checkbox1.checked == false
-  ];
-  if(conditions[0] || conditions[1] || conditions[2] || conditions[3] || conditions[4] || conditions[5] || conditions[6]){  
-    errorMessage();
-  }else{
-    modalbg.style.display = "none";
-    modalConfirmbg.style.display = "block";
-  }
 
-  function errorMessage(){
-    for(let i=0; i<7; i++){
-      if(conditions[i]){
-        new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorMessage;
-      }else{
-        new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ConfirmMessage;
-      }
-    }
-  }
-}*/
-
-function closeWindow() {
-  modalbg.style.display = "none";  
-  modalConfirmbg.style.display = "none";
-}
 
 
 
