@@ -88,10 +88,77 @@ img {
 
 @media all and (min-width: 768px) and (max-width: 991px) {
   .image_logo {display: none;}
+  .confirm-topnav{
+    display: none;
+  }
+  .confirm-topnav a {display: none;}
+  .confirm-topnav a.icon {
+    display: none;
+  }
+  .image_logo_resize{
+    margin-top: 13px;
+  }
+  .topnav a {
+    font-size: 15px;
+  }
+  .hero-content h1{
+    font-size: 55px;
+  }
+  .hero-content p{
+    font-size: 25px;
+  }
+  .hero-img {
+    width: 91%;
+    height: 93%;
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    /*padding-left: 15%;*/
+    border-radius: 10px;
+  }
+  /*.hero-content {
+    overflow: hidden;
+  }*/
 }
 
 @media all and (max-width: 767px) {
   .image_logo {display: none;}
+  .confirm-topnav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    column-gap: 40%;
+    background-color: white;
+    width: 100%;
+    height: 70px;
+  }
+  .confirm-topnav a {display: none;}
+  .confirm-topnav a.icon {
+    float: right;
+    display: block;
+    color: #f00;
+    margin-top: -15px;
+  }
+  .confirm-content{
+    position: absolute;
+    bottom: 25px;
+  }
+  .confirm-background{
+    height: 800px;
+  }
+  .content{
+    position: absolute;
+    bottom: 25px;
+  }
+  .hero-content {
+    height: 220px;
+    row-gap: 30px;
+    margin-top: -40px;
+  }
+  .hero-section{
+    height: 200px;
+    min-height: 200px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -643,7 +710,7 @@ footer {
   }
   .hero-section > .btn-signup {
     display: block;
-    margin: 32px auto 10px;
+    margin: 50px auto 10px;
     padding: 12px 35px;
   }
   .copyrights {
