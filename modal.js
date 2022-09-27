@@ -1,5 +1,5 @@
 function editNav() {
-  var x = document.getElementById("myTopnav");
+  var x = document.getElementsByClassName("myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
   } else {
@@ -73,15 +73,16 @@ const surname = document.getElementById('JS-last');
 const email = document.getElementById('JS-email');
 const birthdate = document.getElementById('JS-birthdate');
 const NumberofTournament = document.getElementById('JS-quantity');
-
-const location1 = document.getElementById('JS-location1');
-const location2 = document.getElementById('JS-location2');
-const location3 = document.getElementById('JS-location3');
-const location4 = document.getElementById('JS-location4');
-const location5 = document.getElementById('JS-location5');
-const location6 = document.getElementById('JS-location6');
-
 const checkbox1 = document.getElementById('JS-checkbox1');
+
+// Les variables correspondant aux localisations sont structurées dans un tableau situé dans modalData.js
+// Ces données sont exploitées via la class Locations
+
+class Locations {
+  constructor(cityClass){
+    this.cityClass = cityClass;
+  }
+};
 
 /*-- Utilisation de RegEx pour vérification de l'adresse mail --*/
 
@@ -99,55 +100,8 @@ const myForm = document.getElementById('JS-myForm');
 
 /*-- Regroupement des différents messages d'erreur associés à chaque ligne du formulaire --*/
 
-let tabMessages = [
-  {
-    "ErrorNumber" : document.getElementById("JS-error1"),
-    "Error" : "Veuillez entrer 2 caractères ou plus pour le champ du prénom.",
-    "Confirm" : ""
-  },
-
-  {
-    "ErrorNumber" : document.getElementById("JS-error2"),
-    "Error" : "Veuillez entrer 2 caractères ou plus pour le champ du nom.",
-    "Confirm" : ""
-  },
-
-  {
-    "ErrorNumber" : document.getElementById("JS-error3"),
-    "Error" : "Vous devez saisir une adresse valide.",
-    "Confirm" : ""
-  },
-
-  {
-    "ErrorNumber" : document.getElementById("JS-error4"),
-    "Error" : "Vous devez entrer votre date de naissance.",
-    "Confirm" : ""
-  },
-
-  {
-    "ErrorNumber" : document.getElementById("JS-error5"),
-    "Error" : "Vous devez saisir une valeur numérique.",
-    "Confirm" : ""
-  },
-
-  {
-    "ErrorNumber" : document.getElementById("JS-error6"),
-    "Error" : "Vous devez saisir une valeur numérique positive ou nulle.",
-    "Confirm" : ""
-  },
-
-  {
-    "ErrorNumber" : document.getElementById("JS-error7"),
-    "Error" : "Vous devez choisir une option.",
-    "Confirm" : ""
-  },
-
-  {
-    "ErrorNumber" : document.getElementById("JS-error8"),
-    "Error" : "Vous devez vérifier que vous acceptez les termes et conditions.",
-    "Confirm" : ""
-  }
-];
+// Les variables correspondant aux différents messages d'erreur sont structurées dans un tableau situé dans modalData.js
+// Ces données sont exploitées via la class Informations
 
 /*-- Class pour généraliser les objets contenants les messages d'erreur, pour fluidifier les fonctions associées à la validation du formulaire (boucle) --*/
 
@@ -179,7 +133,7 @@ myForm.addEventListener("submit", (e) => {
       birthdate.value.length === 0,
       NumberofTournament.value.length === 0,
       NumberofTournament.value < 0,
-      location1.checked == false && location2.checked == false && location3.checked == false && location4.checked == false && location5.checked == false && location6.checked == false,
+      new Locations(tabLocations[0].LocationCall).cityClass.checked == false && new Locations(tabLocations[1].LocationCall).cityClass.checked == false && new Locations(tabLocations[2].LocationCall).cityClass.checked == false && new Locations(tabLocations[3].LocationCall).cityClass.checked == false && new Locations(tabLocations[4].LocationCall).cityClass.checked == false && new Locations(tabLocations[5].LocationCall).cityClass.checked == false,
       checkbox1.checked == false
     ];
     if(conditions[0] || conditions[1] || conditions[2] || conditions[3] || conditions[4] || conditions[5] || conditions[6] || conditions[7]){  
