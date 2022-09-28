@@ -117,10 +117,9 @@ class Informations {
 
 // Déclenchement au clique du bouton submit
 // Le preventDefault évite l'envoie des données (pas de base de données existante)
-// Puis exécution de launchConfirm qui analyse chaque ligne du formulaire
-// S'il n'y a pas d'erreur, le formulaire se ferme et la fenêtre de remerciement apparait
-// Sinon, la fonction execute la fonction errorMessage
-// Celle-ci reprend toutes les conditions et renvoye les messages associés, contenus dans chaque instances de class Informations
+// Puis exécution de launchConfirm qui analyse chaque ligne du formulaire via une boucle et une condition
+// Si une condition n'est pas vérifiée, isError passe à true et, de plus, le code renvoye le message associé à l'erreur, contenu dans chaque instances de class Informations
+// S'il n'y a pas d'erreur, isError reste à la valeur False, puis la condition suivante ferme le formulaire et ouvre la fenêtre de remerciement
 
 myForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -136,22 +135,22 @@ myForm.addEventListener("submit", (e) => {
       new Locations(tabLocations[0].LocationCall).cityClass.checked == false && new Locations(tabLocations[1].LocationCall).cityClass.checked == false && new Locations(tabLocations[2].LocationCall).cityClass.checked == false && new Locations(tabLocations[3].LocationCall).cityClass.checked == false && new Locations(tabLocations[4].LocationCall).cityClass.checked == false && new Locations(tabLocations[5].LocationCall).cityClass.checked == false,
       checkbox1.checked == false
     ];
-    if(conditions[0] || conditions[1] || conditions[2] || conditions[3] || conditions[4] || conditions[5] || conditions[6] || conditions[7]){  
-      errorMessage();
-    }else{
+    let isError = false;
+
+    for(let i=0; i<8; i++){
+      if(conditions[i]){
+        new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorMessage;
+        isError = true;
+      }else{
+        new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ConfirmMessage;
+      }
+    }
+
+    if(isError === false){
       modalbg.style.display = "none";
       modalConfirmbg.style.display = "block";
     }
-  
-    function errorMessage(){
-      for(let i=0; i<8; i++){
-        if(conditions[i]){
-          new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorMessage;
-        }else{
-          new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ErrorName.innerHTML = new Informations(tabMessages[i].ErrorNumber, tabMessages[i].Error, tabMessages[i].Confirm).ConfirmMessage;
-        }
-      }
-    }
+
   }
 });
 
